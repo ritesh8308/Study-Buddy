@@ -341,7 +341,7 @@ Second, create the learning roadmap, broken down into logical modules. Each modu
                     
                     const userQuery = `Generate a learning roadmap for the topic: "${this.userInput}".`;
 
-                    const apiKey = "AIzaSyALjgClNWyj9subdrTkpEWCpG-toDS9qKU";
+                    const apiKey = "AIzaSyCtwoXBVwuClslYYk0jjH3z6dED9iT-dng";
                     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
                     
                     const payload = {
@@ -395,7 +395,7 @@ Second, create the learning roadmap, broken down into logical modules. Each modu
                             });
 
                             if (!response.ok) {
-                                throw new Error(`API request failed with status ${response.status}: ${response.statusText}`);
+                                throw new Error(` request failed with status ${response.status}: ${response.statusText}`);
                             }
 
                             const result = await response.json();
