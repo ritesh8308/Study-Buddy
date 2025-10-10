@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartStudy - Your Personalized AI Learning Companion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .hero-gradient { background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%); }
+        .glass-effect { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+        
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
+        .animate-pulse-slow { animation: pulse 3s ease-in-out infinite; }
+        .animate-slideInLeft { animation: slideInLeft 0.8s ease-out forwards; }
+        .animate-slideInRight { animation: slideInRight 0.8s ease-out forwards; }
+        
+        .feature-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .feature-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
+        
+        .btn-primary { background: linear-gradient(45deg, #667eea, #764ba2); transition: all 0.3s ease; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4); }
+        
+        .section-reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .section-reveal.revealed { opacity: 1; transform: translateY(0); }
+        
+        .nav-link { position: relative; transition: color 0.3s ease; }
+        .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 50%; background: #667eea; transition: all 0.3s ease; }
+        .nav-link:hover::after { width: 100%; left: 0; }
+        
+        .typing-animation::after { content: '|'; animation: blink 1s infinite; }
+        @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+        
+        .parallax { transform: translateZ(0); }
+        .parallax-slow { transform: translate3d(0, var(--scroll, 0) * -0.3px, 0); }
+    </style>
+</head>
+
+<body class="bg-gray-50 overflow-x-hidden">
+    <!-- Header -->
+    <header class="fixed top-0 w-full glass-effect z-50 transition-all duration-300" id="header">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#" class="flex items-center space-x-2 animate-slideInLeft">
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <i data-lucide="brain-circuit" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-white">SmartStudy</span>
+                </a>
+
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="nav-link text-white/90 hover:text-white">Features</a>
+                    <a href="#demo" class="nav-link text-white/90 hover:text-white">Demo</a>
+                    <a href="#community" class="nav-link text-white/90 hover:text-white">Community</a>
+                    <a href="#contact" class="nav-link text-white/90 hover:text-white">Contact</a>
+                </nav>
+
+                <a href="quiz.html">
+                    <button class="btn-primary text-white px-6 py-2 rounded-full font-semibold animate-pulse-slow">
+                        Test Yourself
+                    </button>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient min-h-screen flex items-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-white rounded-full animate-float"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-white rounded-full animate-float" style="animation-delay: 2s;"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="max-w-5xl mx-auto animate-fadeInUp">
+                <span class="inline-block bg-white/20 backdrop-blur text-white px-6 py-2 rounded-full mb-6 font-semibold">
+                    🚀 The Future of Learning is Here
+                </span>
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-8 typing-animation">
+                    Unlock Your Potential with AI-Powered Learning
+                </h1>
+                <p class="text-xl md:text-2xl text-white/90 mb-12 leading-relaxed">
+                    SmartStudy creates personalized learning roadmaps, integrates the best online resources, and helps you master any subject faster than ever before.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="dashboard.html">
+                        <button class="btn-primary text-white px-10 py-4 rounded-full font-bold text-lg flex items-center justify-center space-x-2 group">
+                            <span>Get Roadmap Now</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-2 transition-transform"></i>
+                        </button>
+                    </a>
+                    <button class="glass-effect text-white px-10 py-4 rounded-full font-semibold text-lg hover:bg-white/20 transition-all">
+                        Watch Demo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white section-reveal">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Intelligent Learning Platform</h2>
+                <p class="text-xl text-gray-600">Everything you need to succeed in one powerful, AI-driven ecosystem.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card bg-gradient-to-br from-blue-50 to-indigo-100 p-8 rounded-2xl border border-blue-200">
+                    <div class="bg-blue-500 p-4 inline-block rounded-xl mb-6">
+                        <i data-lucide="brain-circuit" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Adaptive AI Learning</h3>
+                    <p class="text-gray-600 leading-relaxed">Our AI understands your learning style and adapts in real-time, ensuring optimal knowledge retention.</p>
+                </div>
+                
+                <div class="feature-card bg-gradient-to-br from-purple-50 to-pink-100 p-8 rounded-2xl border border-purple-200">
+                    <div class="bg-purple-500 p-4 inline-block rounded-xl mb-6">
+                        <i data-lucide="video" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Curated Video Content</h3>
+                    <p class="text-gray-600 leading-relaxed">Access the world's best educational content, perfectly organized into structured learning paths.</p>
+                </div>
+                
+                <div class="feature-card bg-gradient-to-br from-green-50 to-emerald-100 p-8 rounded-2xl border border-green-200">
+                    <div class="bg-green-500 p-4 inline-block rounded-xl mb-6">
+                        <i data-lucide="trending-up" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Progress Analytics</h3>
+                    <p class="text-gray-600 leading-relaxed">Beautiful dashboards and insights that keep you motivated and on track to achieve your goals.</p>
+                </div>
+                
+                <div class="feature-card bg-gradient-to-br from-orange-50 to-red-100 p-8 rounded-2xl border border-orange-200">
+                    <div class="bg-orange-500 p-4 inline-block rounded-xl mb-6">
+                        <i data-lucide="globe" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Global Accessibility</h3>
+                    <p class="text-gray-600 leading-relaxed">Multi-language support and offline capabilities make learning accessible anywhere, anytime.</p>
+                </div>
+                
+                <div class="feature-card bg-gradient-to-br from-teal-50 to-cyan-100 p-8 rounded-2xl border border-teal-200">
+                    <div class="bg-teal-500 p-4 inline-block rounded-xl mb-6">
+                        <i data-lucide="award" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Achievement System</h3>
+                    <p class="text-gray-600 leading-relaxed">Earn badges, certificates, and recognition as you master new skills and reach milestones.</p>
+                </div>
+                
+                <div class="feature-card bg-gradient-to-br from-violet-50 to-purple-100 p-8 rounded-2xl border border-violet-200">
+                    <div class="bg-violet-500 p-4 inline-block rounded-xl mb-6">
+                        <i data-lucide="message-circle" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">AI Assistant</h3>
+                    <p class="text-gray-600 leading-relaxed">24/7 intelligent support to answer questions, explain concepts, and guide your learning journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-20 gradient-bg section-reveal">
+        <div class="container mx-auto px-6 text-center">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">Experience SmartStudy</h2>
+                <p class="text-xl text-white/90 mb-12">See how our platform transforms the learning experience for students, teachers, and institutions.</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                    <a href="student_dashboard.html">
+                        <button class="glass-effect text-white p-8 rounded-2xl hover:bg-white/20 transition-all group">
+                            <i data-lucide="user" class="w-12 h-12 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
+                            <h3 class="text-xl font-bold mb-2">Student Experience</h3>
+                            <p class="text-white/80">Explore personalized learning paths</p>
+                        </button>
+                    </a>
+                    
+                    <a href="teacher_dashboard.html">
+
+                        <button class="glass-effect text-white p-8 rounded-2xl hover:bg-white/20 transition-all group">
+                            <i data-lucide="graduation-cap" class="w-12 h-12 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
+                            <h3 class="text-xl font-bold mb-2">Teacher Dashboard</h3>
+                            <p class="text-white/80">Manage classes and track progress</p>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="py-20 bg-gray-900 text-white section-reveal">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Join Our Community</h2>
+                <p class="text-xl text-gray-300">Built by passionate developers and educators. Help shape the future of learning.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <a href="#" class="block glass-effect p-8 rounded-2xl hover:bg-white/10 transition-all group text-center">
+                    <i data-lucide="github" class="w-16 h-16 mx-auto mb-6 text-blue-400 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="text-2xl font-bold mb-4">Open Source</h3>
+                    <p class="text-gray-300">Contribute to the project on GitHub</p>
+                </a>
+                
+                <a href="#" class="block glass-effect p-8 rounded-2xl hover:bg-white/10 transition-all group text-center">
+                    <i data-lucide="users" class="w-16 h-16 mx-auto mb-6 text-purple-400 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="text-2xl font-bold mb-4">Discord Community</h3>
+                    <p class="text-gray-300">Connect with learners worldwide</p>
+                </a>
+                
+                <a href="#" class="block glass-effect p-8 rounded-2xl hover:bg-white/10 transition-all group text-center">
+                    <i data-lucide="book-open" class="w-16 h-16 mx-auto mb-6 text-green-400 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="text-2xl font-bold mb-4">Documentation</h3>
+                    <p class="text-gray-300">Learn how to contribute and build</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white section-reveal">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Let's Connect</h2>
+                    <p class="text-xl text-gray-600">Ready to transform your learning experience? Get in touch with our team.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="space-y-8">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-blue-100 p-3 rounded-full">
+                                <i data-lucide="mail" class="w-6 h-6 text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Email Us</h3>
+                                <p class="text-gray-600">hello@smartstudy.ai</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-green-100 p-3 rounded-full">
+                                <i data-lucide="message-square" class="w-6 h-6 text-green-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Live Chat</h3>
+                                <p class="text-gray-600">Available 24/7 support</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-purple-100 p-3 rounded-full">
+                                <i data-lucide="map-pin" class="w-6 h-6 text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Global Team</h3>
+                                <p class="text-gray-600">Remote-first organization</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form class="space-y-6">
+                        <input type="text" placeholder="Your Name" class="w-full px-6 py-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                        <input type="email" placeholder="Your Email" class="w-full px-6 py-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                        <textarea placeholder="Your Message" rows="6" class="w-full px-6 py-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"></textarea>
+                        <button type="submit" class="w-full btn-primary text-white px-8 py-4 rounded-xl font-bold text-lg">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                            <i data-lucide="brain-circuit" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <span class="text-2xl font-bold">SmartStudy</span>
+                    </div>
+                    <p class="text-gray-400">Revolutionizing education with AI-powered personalized learning for everyone, everywhere.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-6">Platform</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">API</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-6">Community</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">GitHub</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Discord</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-6">Legal</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 SmartStudy. All rights reserved. Built with ❤️ for learners worldwide.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Smooth reveal animations on scroll
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.section-reveal').forEach(el => observer.observe(el));
+        
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(0, 0, 0, 0.9)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.1)';
+            }
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
