@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Quiz Generator - SmartStudy</title>
+
+    <script src="env-config.js"></script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -222,7 +225,8 @@
                     
                     const systemPrompt = `You are an expert test creator for the SmartStudy platform. Your task is to generate a comprehensive multiple-choice quiz with exactly 20 questions on a given topic. For each question, provide four distinct options, with only one being correct. Also, provide a brief but clear explanation for why the correct answer is right. Ensure the questions range in difficulty from easy to challenging to provide a thorough assessment.`;
                     const userQuery = `Generate a quiz on: "${this.topic}"`;
-                    const apiKey = "GOOGLE_API_KEY";
+                    const apiKey = window.ENV_API_KEY || ""; 
+
                     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
 
                     const payload = {
