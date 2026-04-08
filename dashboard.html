@@ -344,7 +344,7 @@ Second, create the learning roadmap, broken down into logical modules. Each modu
                     
                     const userQuery = `Generate a learning roadmap for the topic: "${this.userInput}".`;
 
-                    const apiKey = window.ENV_API_KEY || ""; 
+                    const apiKey = GOOGLE_API_KEY; 
                     
                     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
                     
