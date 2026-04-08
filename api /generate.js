@@ -10,15 +10,22 @@ export default async function handler(req, res) {
     if (!apiKey) {
       return res.status(500).json({ error: 'API key is missing' });
     }
-const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+
     const response = await fetch(apiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload) 
     });
 
+    // 👇 NEW: This will tell us EXACTLY what Google is complaining about!
     if (!response.ok) {
-      throw new Error(`API Error: ${response.status}`);
+      const googleError = await response.text();
+      return res.status(response.status).json({ 
+          error: "Google API Error", 
+          details: googleError 
+      });
     }
 
     const data = await response.json();
@@ -26,6 +33,6 @@ const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1
 
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ error: 'Failed to generate content' });
+    return res.status(500).json({ error: 'Backend crash', message: error.message });
   }
 }
