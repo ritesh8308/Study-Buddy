@@ -395,8 +395,10 @@ Second, create the learning roadmap, broken down into logical modules. Each modu
                             body: JSON.stringify({ payload: payload }) // <-- THIS is the important change
                             });
 
-                            if (!response.ok) {
-                                throw new Error(` request failed with status ${response.status}: ${response.statusText}`);
+                           if (!response.ok) {
+                                const errorData = await response.json();
+                                // This grabs the exact secret error from our new backend!
+                                throw new Error(errorData.details || errorData.error || "API Error");
                             }
 
                             const result = await response.json();
@@ -414,7 +416,7 @@ Second, create the learning roadmap, broken down into logical modules. Each modu
                             console.error("API call failed:", err);
                             retries--;
                             if (retries === 0) {
-                                this.error = "Failed to generate roadmap after multiple attempts. The service might be busy. Please try again later.";
+                                this.error = err.message;
                                 this.loading = false;
                             } else {
                                 await new Promise(res => setTimeout(res, (3 - retries) * 1000));
