@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartStudy Dashboard - Generate Your Learning Path</title>
+    
+    <script src="env-config.js"></script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -341,7 +344,8 @@ Second, create the learning roadmap, broken down into logical modules. Each modu
                     
                     const userQuery = `Generate a learning roadmap for the topic: "${this.userInput}".`;
 
-                    const apiKey = "GOOGLE_API_KEY";
+                    const apiKey = window.ENV_API_KEY || ""; 
+                    
                     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
                     
                     const payload = {
